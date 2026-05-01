@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CONFIRMAME BAIRES 💖</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Fredoka+One&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink1: #ff69b4;
+      --pink2: #ff1493;
+      --pink3: #ffb6c1;
+      --pink4: #ff85c2;
+      --gold:  #ffe066;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #ff9ecf, #ff69b4, #ff1493, #ff9ecf);
+      background-size: 400% 400%;
+      animation: bgShift 6s ease infinite;
+      overflow-x: hidden;
+      font-family: 'Fredoka One', cursive;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='28' font-size='28'%3E💖%3C/text%3E%3C/svg%3E") 16 16, auto;
+    }
+
+    @keyframes bgShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ── GLITTER CANVAS ── */
+    #glitter { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+    /* ── OVERLAY de inicio ── */
+    #overlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, #ff1493cc, #ff69b4cc);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      cursor: pointer;
+    }
+
+    #overlay h2 {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(2rem, 6vw, 4rem);
+      color: #fff;
+      text-shadow: 0 0 20px #ff1493, 0 0 40px #ff69b4;
+      animation: pulse 1.2s ease infinite alternate;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    #overlay p {
+      color: #fff;
+      font-size: 1.3rem;
+      opacity: 0.85;
+    }
+
+    @keyframes pulse {
+      from { transform: scale(1); }
+      to   { transform: scale(1.05); }
+    }
+
+    /* ── PÁGINA PRINCIPAL ── */
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+      gap: 2rem;
+    }
+
+    /* ── CARTEL GIGANTE QUE CRECE ── */
+    .cartel-wrap {
+      text-align: center;
+    }
+
+    .cartel {
+      font-family: 'Pacifico', cursive;
+      font-size: 4vw;
+      color: #fff;
+      text-shadow:
+        0 0 10px #ff1493,
+        0 0 30px #ff69b4,
+        0 0 60px #ffb6c1,
+        3px 3px 0 #c70066;
+      line-height: 1.2;
+      animation: crecer 3s ease-out forwards, brillar 2s ease-in-out 3s infinite alternate;
+      display: inline-block;
+    }
+
+    @keyframes crecer {
+      0%   { font-size: 2vw;  opacity: 0; transform: scale(0.3) rotate(-5deg); }
+      40%  { opacity: 1; transform: scale(1.1) rotate(2deg); }
+      70%  { transform: scale(0.95) rotate(-1deg); }
+      100% { font-size: clamp(2.5rem, 9vw, 9rem); transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes brillar {
+      from { text-shadow: 0 0 10px #ff1493, 0 0 30px #ff69b4, 0 0 60px #ffb6c1, 3px 3px 0 #c70066; }
+      to   { text-shadow: 0 0 20px #fff, 0 0 50px #ff1493, 0 0 100px #ff69b4, 3px 3px 0 #c70066; }
+    }
+
+    /* corazones volando alrededor del cartel */
+    .hearts-ring {
+      position: relative;
+      display: inline-block;
+    }
+
+    .heart-fly {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: flyHeart 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .heart-fly:nth-child(1)  { top: -20px; left: 10%;  animation-delay: 0s; }
+    .heart-fly:nth-child(2)  { top: -20px; right: 10%; animation-delay: 0.4s; }
+    .heart-fly:nth-child(3)  { top: 40%;  left: -30px; animation-delay: 0.8s; }
+    .heart-fly:nth-child(4)  { top: 40%;  right: -30px;animation-delay: 1.2s; }
+    .heart-fly:nth-child(5)  { bottom: -10px; left: 20%; animation-delay: 1.6s; }
+    .heart-fly:nth-child(6)  { bottom: -10px; right: 20%;animation-delay: 2s; }
+
+    @keyframes flyHeart {
+      0%   { transform: translateY(0) scale(1); opacity: 1; }
+      50%  { transform: translateY(-40px) scale(1.3); opacity: 0.8; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    /* ── SUBTÍTULO ── */
+    .sub {
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1.2rem, 4vw, 3rem);
+      color: var(--gold);
+      text-shadow: 2px 2px 0 #c70066, 0 0 20px #ff69b4;
+      animation: fadeUp 0.8s 3.2s ease both;
+      text-align: center;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── BOTÓN RESPUESTA ── */
+    .btn-baires {
+      margin-top: 1rem;
+      padding: 1.2rem 3rem;
+      background: var(--gold);
+      color: #c70066;
+      font-family: 'Pacifico', cursive;
+      font-size: clamp(1rem, 3vw, 1.8rem);
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ffe066, 0 8px 30px rgba(0,0,0,0.2);
+      animation: fadeUp 0.8s 3.8s ease both, wobble 2s 5s ease-in-out infinite;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-baires:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 40px #ffe066, 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    @keyframes wobble {
+      0%,100% { transform: rotate(0deg); }
+      25%  { transform: rotate(-3deg) scale(1.05); }
+      75%  { transform: rotate(3deg) scale(1.05); }
+    }
+
+    /* ── CONFETTI/BRILLOS ── */
+    .sparkle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 2;
+      font-size: 1.5rem;
+      animation: sparkleFloat linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes sparkleFloat {
+      0%   { transform: translateY(100vh) rotate(0deg);   opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(720deg); opacity: 0; }
+    }
+
+    /* ── YOUTUBE IFRAME OCULTO ── */
+    #yt-player {
+      position: fixed;
+      bottom: -200px;
+      width: 1px;
+      height: 1px;
+      pointer-events: none;
+    }
+
+    /* ── NOTA DE MUSICA ── */
+    .music-note {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      font-size: 2rem;
+      animation: spinNote 2s linear infinite;
+      z-index: 10;
+      cursor: default;
+    }
+    @keyframes spinNote {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- OVERLAY click para arrancar música -->
+<div id="overlay" onclick="arrancar()">
+  <h2>💖 Dale click para abrir 💖</h2>
+  <p>✨ tengo algo que decirte ✨</p>
+</div>
+
+<!-- Canvas de brillos -->
+<canvas id="glitter"></canvas>
+
+<!-- Contenido principal -->
+<main>
+  <div class="cartel-wrap">
+    <div class="hearts-ring">
+      <span class="heart-fly">💗</span>
+      <span class="heart-fly">💖</span>
+      <span class="heart-fly">💕</span>
+      <span class="heart-fly">💓</span>
+      <span class="heart-fly">💗</span>
+      <span class="heart-fly">💖</span>
+      <div class="cartel">Confirmame<br/>Baires<br/>putita.<br/>TKM negra 🖤</div>
+    </div>
+  </div>
+
+  <div class="sub">✨ te amo demasiado ✨</div>
+
+  <a class="btn-baires" href="javascript:void(0)" onclick="confirmar()">
+    💌 ¡CONFIRMO! 💌
+  </a>
+</main>
+
+<!-- YouTube embed oculto -->
+<iframe id="yt-player"
+  src="about:blank"
+  allow="autoplay; encrypted-media"
+  frameborder="0"
+></iframe>
+
+<div class="music-note">🎵</div>
+
+<script>
+  // ────────────────────────────────
+  // GLITTER CANVAS
+  // ────────────────────────────────
+  const canvas = document.getElementById('glitter');
+  const ctx    = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const COLORS = ['#ff69b4','#ff1493','#ffb6c1','#ffe066','#fff','#ff85c2','#c70066'];
+  const SHAPES = ['✦','★','◆','●','♥','✿'];
+
+  function addParticle(x, y) {
+    for (let i = 0; i < 3; i++) {
+      particles.push({
+        x: x ?? Math.random() * canvas.width,
+        y: y ?? Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 4,
+        vy: (Math.random() - 0.5) * 4 - 1,
+        alpha: 1,
+        size: Math.random() * 14 + 6,
+        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        shape: SHAPES[Math.floor(Math.random() * SHAPES.length)],
+        decay: Math.random() * 0.015 + 0.008,
+      });
+    }
+  }
+
+  // lluvia constante de brillos
+  setInterval(() => addParticle(), 80);
+
+  // brillos al mover el mouse
+  document.addEventListener('mousemove', e => addParticle(e.clientX, e.clientY));
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles = particles.filter(p => p.alpha > 0);
+    particles.forEach(p => {
+      ctx.save();
+      ctx.globalAlpha = p.alpha;
+      ctx.fillStyle   = p.color;
+      ctx.font        = `${p.size}px serif`;
+      ctx.fillText(p.shape, p.x, p.y);
+      ctx.restore();
+      p.x     += p.vx;
+      p.y     += p.vy;
+      p.alpha -= p.decay;
+    });
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // ────────────────────────────────
+  // SPARKLES FLOTANTES (emojis)
+  // ────────────────────────────────
+  const emojis = ['✨','💖','🌸','💗','🩷','💕','⭐','🎀','🌷'];
+  for (let i = 0; i < 30; i++) {
+    const el  = document.createElement('div');
+    el.className = 'sparkle';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left     = Math.random() * 100 + 'vw';
+    el.style.fontSize = (Math.random() * 1.5 + 0.8) + 'rem';
+    const dur = (Math.random() * 8 + 6).toFixed(1);
+    const del = (Math.random() * 10).toFixed(1);
+    el.style.animation = `sparkleFloat ${dur}s ${del}s linear infinite`;
+    document.body.appendChild(el);
+  }
+
+  // ────────────────────────────────
+  // ARRANCAR (quita overlay + musica)
+  // ────────────────────────────────
+  function arrancar() {
+    document.getElementById('overlay').style.display = 'none';
+    // cargar YouTube con autoplay
+    document.getElementById('yt-player').src =
+      'https://www.youtube.com/embed/QC4Tl9s69wM?autoplay=1&loop=1&playlist=QC4Tl9s69wM&rel=0&controls=0&modestbranding=1';
+  }
+
+  // ────────────────────────────────
+  // BOTÓN CONFIRMAR
+  // ────────────────────────────────
+  function confirmar() {
+    for (let i = 0; i < 60; i++) {
+      setTimeout(() => {
+        addParticle(
+          Math.random() * window.innerWidth,
+          Math.random() * window.innerHeight
+        );
+      }, i * 40);
+    }
+    const resp = document.createElement('div');
+    resp.style.cssText = `
+      position:fixed; inset:0; display:flex; align-items:center;
+      justify-content:center; z-index:500; pointer-events:none;
+    `;
+    resp.innerHTML = `<div style="
+      font-family:'Pacifico',cursive;
+      font-size:clamp(2rem,8vw,6rem);
+      color:#fff;
+      text-shadow:0 0 20px #ff1493,0 0 60px #ff69b4, 3px 3px 0 #c70066;
+      text-align:center;
+      animation:crecer 1.5s ease-out forwards;
+      padding:1rem;
+    ">¡YAAA!<br/>💖💖💖<br/>bairesiiiiii</div>`;
+    document.body.appendChild(resp);
+    setTimeout(() => resp.remove(), 4000);
+  }
+</script>
+</body>
+</html>
